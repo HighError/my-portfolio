@@ -57,7 +57,7 @@ class Data {
             icon: SimpleIcons.github),
         ProjectLink(
             title: 'Itch.io',
-            url: 'https://higherror.itch.io/road-to-treasuare',
+            url: 'https://higherror.itch.io/road-to-treasure',
             icon: SimpleIcons.itchdotio),
       ],
     ),
