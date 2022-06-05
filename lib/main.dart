@@ -7,6 +7,7 @@ import 'package:higherror_portfolio/widgets/drawer_widget/drawer_widget.dart';
 import 'package:higherror_portfolio/widgets/footer_widget/footer_widget.dart';
 import 'package:higherror_portfolio/widgets/header_widget/header_widget.dart';
 import 'package:url_strategy/url_strategy.dart';
+import 'package:web_smooth_scroll/web_smooth_scroll.dart';
 
 GlobalKey<ScaffoldState>? _key;
 
@@ -35,9 +36,21 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MainScreen extends StatelessWidget {
+class MainScreen extends StatefulWidget {
   final Widget child;
   const MainScreen({Key? key, required this.child}) : super(key: key);
+
+  @override
+  State<MainScreen> createState() => _MainScreenState();
+}
+
+class _MainScreenState extends State<MainScreen> {
+  late ScrollController _scrollController;
+  @override
+  void initState() {
+    _scrollController = ScrollController();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -65,16 +78,21 @@ class MainScreen extends StatelessWidget {
         key: _key,
         endDrawer: const DrawerWidget(),
         endDrawerEnableOpenDragGesture: false,
-        body: ListView(
-          children: [
-            ConstrainedBox(
-              constraints: BoxConstraints(
-                minHeight: _minHeaightContent,
+        body: WebSmoothScroll(
+          controller: _scrollController,
+          child: ListView(
+            physics: const NeverScrollableScrollPhysics(),
+            controller: _scrollController,
+            children: [
+              ConstrainedBox(
+                constraints: BoxConstraints(
+                  minHeight: _minHeaightContent,
+                ),
+                child: widget.child,
               ),
-              child: child,
-            ),
-            const FooterWidget(),
-          ],
+              const FooterWidget(),
+            ],
+          ),
         ),
       ),
     );
