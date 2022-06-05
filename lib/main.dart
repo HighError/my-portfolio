@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:higherror_portfolio/modules/data.dart';
 import 'package:higherror_portfolio/routes.dart';
-import 'dart:html' as html;
 
 import 'package:higherror_portfolio/theme.dart';
 import 'package:higherror_portfolio/widgets/drawer_widget/drawer_widget.dart';
@@ -24,10 +23,10 @@ void changeDrawerState() {
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: 'HighError Portfolio',
       navigatorKey: Data.navigationKey,
       theme: theme,
       initialRoute: '/',
